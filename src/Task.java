@@ -4,21 +4,23 @@ import java.util.Objects;
 public class Task {
 
     private static int counter = 0;
-    private final Integer iD = counter++;
+    private final Integer id = counter++;
     private String taskName;
     private String taskDescription;
     private LocalDateTime endOfTask;
     private Boolean whatType;
 
-    public Task(String taskName, String taskDescription, LocalDateTime endOfTask) {
+    public Task(String taskName, String taskDescription, LocalDateTime endOfTask, Boolean whatType) {
         setTaskName(taskName);
         setTaskDescription(taskDescription);
         this.endOfTask = endOfTask;
+        this.whatType = whatType;
     }
 
 
-    public Integer getiD() {
-        return iD;
+    public Integer getId() {
+
+        return id;
     }
 
     public String getTaskName() {
@@ -34,9 +36,17 @@ public class Task {
     }
 
     public String getTaskDescription() {
+
         return taskDescription;
     }
 
+    public Boolean getWhatType() {
+        return whatType;
+    }
+
+    public void setWhatType(Boolean whatType) {
+        this.whatType = whatType;
+    }
 
     public void setTaskDescription(String taskDescription) {
 
@@ -62,20 +72,18 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(iD, task.iD) && Objects.equals(taskName, task.taskName) && Objects.equals(taskDescription, task.taskDescription);
+        return Objects.equals(id, task.id) && Objects.equals(taskName, task.taskName) && Objects.equals(taskDescription, task.taskDescription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(iD, taskName, taskDescription);
+        return Objects.hash(id, taskName, taskDescription);
     }
 
     @Override
     public String toString() {
         String type = "личная";
-        if (!whatType) type =  "рабочая";
-
-        return "Task{" +
-                "Номер задачи " + iD + taskName + " " + taskDescription + "\nТип задачи: " + type;
+        if (!whatType) type = "рабочая";
+        return "Номер задачи № " + id + taskName + " " + taskDescription + "\nТип задачи: " + type;
     }
 }
