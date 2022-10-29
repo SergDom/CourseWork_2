@@ -1,18 +1,19 @@
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Task {
+public class Task implements Repeatable{
 
     private static int counter = 0;
     private final Integer id = counter++;
     private String taskName;
     private String taskDescription;
-    private LocalDateTime endOfTask;
-    private Boolean whatType;
-
-    public Task(String taskName, String taskDescription, LocalDateTime endOfTask, Boolean whatType) throws NoRequiredData {
+    private final RepeatTask repeatTask;
+    private WhatType whatType;
+    private final LocalDateTime endOfTask;
+    public Task(String taskName, String taskDescription, RepeatTask repeatTask,LocalDateTime endOfTask, WhatType whatType) throws NoRequiredData {
         setTaskName(taskName);
         setTaskDescription(taskDescription);
+        this.repeatTask = repeatTask;
         this.endOfTask = endOfTask;
         this.whatType = whatType;
     }
@@ -40,11 +41,12 @@ public class Task {
         return taskDescription;
     }
 
-    public Boolean getWhatType() {
+    public WhatType getWhatType() {
         return whatType;
     }
 
-    public void setWhatType(Boolean whatType) {
+    public void setWhatType(WhatType whatType) {
+
         this.whatType = whatType;
     }
 
@@ -62,9 +64,9 @@ public class Task {
         return endOfTask;
     }
 
-    public void setEndOfTask(LocalDateTime endOfTask) {
-        this.endOfTask = endOfTask;
-    }
+//    public void setEndOfTask(LocalDateTime endOfTask) {
+//        this.endOfTask = endOfTask;
+//    }
 
 
     @Override
@@ -81,9 +83,20 @@ public class Task {
     }
 
     @Override
+    public RepeatTask nextTime() {
+        switch (repeatTask) {
+            case S:
+                   if (endOfTask.isBefore(i).plusDays(0);
+            case D -> System.out.println(endOfTask.plusDays(1) + "- дата повтора задачи");
+            case W -> System.out.println(endOfTask.plusWeeks(1) + "- дата повтора задачи");
+            case M -> System.out.println(endOfTask.plusMonths(1) + "- дата повтора задачи");
+            case A -> System.out.println(endOfTask.plusYears(1) + "- дата повтора задачи");
+        }
+        return repeatTask;
+    }
+
+    @Override
     public String toString() {
-        String type = "личная";
-        if (!whatType) type = "рабочая";
         return "Номер задачи № " + id + taskName + " " + taskDescription + "\nТип задачи: " + type;
     }
 }

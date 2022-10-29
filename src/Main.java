@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
@@ -38,6 +39,25 @@ public class Main {
         String taskName = scanner.next();
         System.out.print("Введите описание задачи: ");
         String taskDescription = scanner.next();
+        System.out.print("Выберите тип задачи: \n");
+        System.out.println(
+                """
+                        P - личная,
+                        W - рабочая,
+                        """);
+        WhatType whatType = WhatType.valueOf(scanner.next());
+        LocalDate dateTask = LocalDate.parse(scanner.next());
+        LocalTime timeTask = LocalTime.parse(scanner.next());
+        System.out.println("Выберете повторяемость:");
+        System.out.println(
+                """
+                        S - не повторяется,
+                        D - через день,
+                        W - через неделю,
+                        M - через месяц,
+                        A - через год.
+                        """);
+        RepeatTask repeat = RepeatTask.valueOf(scanner.next());
     }
 
 
