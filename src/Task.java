@@ -10,7 +10,7 @@ public class Task {
     private LocalDateTime endOfTask;
     private Boolean whatType;
 
-    public Task(String taskName, String taskDescription, LocalDateTime endOfTask, Boolean whatType) {
+    public Task(String taskName, String taskDescription, LocalDateTime endOfTask, Boolean whatType) throws NoRequiredData {
         setTaskName(taskName);
         setTaskDescription(taskDescription);
         this.endOfTask = endOfTask;
@@ -27,9 +27,9 @@ public class Task {
         return taskName;
     }
 
-    public void setTaskName(String taskName) {
+    public void setTaskName(String taskName) throws NoRequiredData{
         if (taskName == null || taskName.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new NoRequiredData("Введите название задачи !!!!");
         } else {
             this.taskName = taskName;
         }
@@ -48,10 +48,10 @@ public class Task {
         this.whatType = whatType;
     }
 
-    public void setTaskDescription(String taskDescription) {
+    public void setTaskDescription(String taskDescription) throws NoRequiredData {
 
         if (taskDescription == null || taskDescription.isBlank()) {
-            throw new IllegalArgumentException();
+            throw new NoRequiredData("Заполните описание задачи !!!!");
         } else {
             this.taskDescription = taskDescription;
         }

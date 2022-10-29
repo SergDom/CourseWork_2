@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 
 public class DailyTask extends Task implements Recurring {
 
-    public DailyTask(String taskName, String taskDescription, LocalDateTime endOfTask, Boolean whatType) {
+    public DailyTask(String taskName, String taskDescription, LocalDateTime endOfTask, Boolean whatType) throws NoRequiredData {
         super(taskName, taskDescription, endOfTask, whatType);
     }
 

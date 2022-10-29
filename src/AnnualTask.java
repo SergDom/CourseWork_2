@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 
 public class AnnualTask extends Task implements Recurring {
 
-    public AnnualTask(String taskName, String taskDescription, LocalDateTime endOfTask, Boolean whatType) {
+    public AnnualTask(String taskName, String taskDescription, LocalDateTime endOfTask, Boolean whatType) throws NoRequiredData {
         super(taskName, taskDescription, endOfTask, whatType);
     }
 
