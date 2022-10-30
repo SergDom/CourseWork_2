@@ -108,8 +108,8 @@ public class Task implements Repeatable {
 
     @Override
     public String toString() {
-        return "Номер задачи № " + id + "Имя задачи: " + taskName + " Описание задачи:  "
-                + taskDescription + " Тип задачи " + getWhatType() + " дата " + endOfTask + " "
+        return "Номер задачи № " + id + " Имя задачи: " + taskName + " Описание задачи: "
+                + taskDescription + " Тип задачи " + getWhatType().name + " дата " + endOfTask + " "
                  + repeatTask.getName() + nextTime();
     }
 }
