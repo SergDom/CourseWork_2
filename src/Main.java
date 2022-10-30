@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Scanner;
 
@@ -34,7 +35,7 @@ public class Main {
         }
     }
 
-    private static void inputTask(Scanner scanner, TaskList notebook) {
+    private static void inputTask(Scanner scanner, TaskList notebook) throws NoRequiredData {
         System.out.print("Введите название задачи: ");
         String taskName = scanner.next();
         System.out.print("Введите описание задачи: ");
@@ -46,6 +47,7 @@ public class Main {
                         W - рабочая,
                         """);
         WhatType whatType = WhatType.valueOf(scanner.next());
+        System.out.println("Введите дату и время в формате гггг-ммм-дд : час:мин ");
         LocalDate dateTask = LocalDate.parse(scanner.next());
         LocalTime timeTask = LocalTime.parse(scanner.next());
         System.out.println("Выберете повторяемость:");
@@ -58,6 +60,8 @@ public class Main {
                         A - через год.
                         """);
         RepeatTask repeat = RepeatTask.valueOf(scanner.next());
+        LocalDateTime startTime = LocalDateTime.of(dateTask, timeTask);
+        notebook.addTask(new Task(taskName, taskDescription, repeat,startTime, whatType));
     }
 
 

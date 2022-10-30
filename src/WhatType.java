@@ -2,13 +2,13 @@ public enum WhatType {
     P ("личная"),
     W ("рабочая");
 
-    public String type;
+    public String name;
 
-    WhatType(String type) {
-        this.type = type;
+    WhatType(String name) {
+        this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
 }
