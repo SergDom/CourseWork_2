@@ -65,10 +65,6 @@ public class Task implements Repeatable {
         return startTime;
     }
 
-//    public void setEndOfTask(LocalDateTime endOfTask) {
-//        this.endOfTask = endOfTask;
-//    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -109,7 +105,7 @@ public class Task implements Repeatable {
     @Override
     public String toString() {
         return "Номер задачи № " + id + " Имя задачи: " + taskName + " Описание задачи: "
-                + taskDescription + " Тип задачи " + getWhatType().name + " дата " + startTime + " "
+                + taskDescription + " Тип задачи: " + getWhatType().name + " Дата: " + startTime + " "
                  + repeatTask.getName() + nextTime();
     }
 }
