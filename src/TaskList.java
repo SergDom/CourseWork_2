@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,7 +20,7 @@ public class TaskList<T extends Task & Recurring> {
 
     public void printToDoListOfDay(LocalDate date) {
         for (T value : calendar.values()) {
-            if (value.getEndOfTask() != null && value.getEndOfTask().toLocalDate().equals(date)) ;
+            if (value.getStartTime() != null && value.getStartTime().toLocalDate().equals(date)) ;
             System.out.println(value);
         }
     }

@@ -9,13 +9,13 @@ public class Task implements Repeatable {
     private String taskDescription;
     private final RepeatTask repeatTask;
     private WhatType whatType;
-    private final LocalDateTime endOfTask;
+    private final LocalDateTime startTime;
 
-    public Task(String taskName, String taskDescription, RepeatTask repeatTask, LocalDateTime endOfTask, WhatType whatType) throws NoRequiredData {
+    public Task(String taskName, String taskDescription, RepeatTask repeatTask, LocalDateTime startTime, WhatType whatType) throws NoRequiredData {
         setTaskName(taskName);
         setTaskDescription(taskDescription);
         this.repeatTask = repeatTask;
-        this.endOfTask = endOfTask;
+        this.startTime = startTime;
         this.whatType = whatType;
     }
 
@@ -61,8 +61,8 @@ public class Task implements Repeatable {
 
     }
 
-    public LocalDateTime getEndOfTask() {
-        return endOfTask;
+    public LocalDateTime getStartTime() {
+        return startTime;
     }
 
 //    public void setEndOfTask(LocalDateTime endOfTask) {
@@ -87,19 +87,19 @@ public class Task implements Repeatable {
     public RepeatTask nextTime() {
         switch (repeatTask) {
             case S:
-                System.out.println(endOfTask.plusDays(0) + "- дата повтора задачи");
+                System.out.println(startTime.plusDays(0) + "- дата повтора задачи");
                 break;
             case D:
-                System.out.println(endOfTask.plusDays(1) + "- дата повтора задачи");
+                System.out.println(startTime.plusDays(1) + "- дата повтора задачи");
                 break;
             case W:
-                System.out.println(endOfTask.plusWeeks(1) + "- дата повтора задачи");
+                System.out.println(startTime.plusWeeks(1) + "- дата повтора задачи");
                 break;
             case M:
-                System.out.println(endOfTask.plusMonths(1) + "- дата повтора задачи");
+                System.out.println(startTime.plusMonths(1) + "- дата повтора задачи");
                 break;
             case A:
-                System.out.println(endOfTask.plusYears(1) + "- дата повтора задачи");
+                System.out.println(startTime.plusYears(1) + "- дата повтора задачи");
                 break;
 
         }
@@ -109,7 +109,7 @@ public class Task implements Repeatable {
     @Override
     public String toString() {
         return "Номер задачи № " + id + " Имя задачи: " + taskName + " Описание задачи: "
-                + taskDescription + " Тип задачи " + getWhatType().name + " дата " + endOfTask + " "
+                + taskDescription + " Тип задачи " + getWhatType().name + " дата " + startTime + " "
                  + repeatTask.getName() + nextTime();
     }
 }
