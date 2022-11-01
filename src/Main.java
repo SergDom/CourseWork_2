@@ -40,7 +40,6 @@ public class Main {
         String taskName = scanner.next();
         System.out.print("Введите описание задачи: ");
         String taskDescription = scanner.next();
-//        WhatType typeOfTask;
         System.out.println("Если задача личная введите - 1 \nЕсли задача рабочая введите - 2\n");
         System.out.print("Тип задачи: ");
         int scanTypeOfTask = scanner.nextInt();
@@ -50,12 +49,6 @@ public class Main {
         } else if (scanTypeOfTask == 2) {
             typeOfTask = WhatType.WORK;
         } else throw new NoRequiredData("Неверно введен тип задачи");
-//        System.out.print("Выберите тип задачи: \n");
-//        System.out.println(
-//                """
-//                        P - личная,
-//                        W - рабочая,
-//                        """);
 
         System.out.println("Введите дату в формате гггг-мм-дд:");
         LocalDate dateTask = LocalDate.parse(scanner.next());
@@ -64,17 +57,17 @@ public class Main {
         System.out.println("Выберете повторяемость:");
         System.out.println(
                 """
-                        S - не повторяется,
-                        D - через день,
-                        W - через неделю,
-                        M - через месяц,
-                        A - через год.
+                        1 - не повторяется,
+                        2 - через день,
+                        3 - через неделю,
+                        4 - через месяц,
+                        5 - через год.
                         """);
-        RepeatTask repeatTask = RepeatTask.valueOf(scanner.next());
+        System.out.print("Повторяемость задачи: ");
+        int repeatTask = scanner.nextInt();
         LocalDateTime startTime = LocalDateTime.of(dateTask, timeTask);
-        notebook.addTask(new Task(taskName, taskDescription, repeatTask, startTime, typeOfTask));
+        notebook.addTask(new Task(taskName, taskDescription, notebook.repeatTask(repeatTask), startTime, typeOfTask));
     }
-
 
     private static void deleteTask(Scanner scanner, TaskList notebook) {
         System.out.println("Введине номер ID задачи: ");
@@ -84,32 +77,7 @@ public class Main {
 
     private static void getListOfTask(Scanner scanner, TaskList notebook) throws NoRequiredData {
         System.out.println("Получить задачи на день: ");
-        notebook.printToDoListOfDay(createDate(scanner));
-    }
-
-    public static LocalDate createDate(Scanner scanner) throws NoRequiredData {
-        System.out.println("год:");
-        int year;
-        if (scanner.hasNextInt()) {
-            year = scanner.nextInt();
-        } else {
-            throw new NoRequiredData("Некорректные данные");
-        }
-        System.out.println("месяц:");
-        int month;
-        if (scanner.hasNextInt()) {
-            month = scanner.nextInt();
-        } else {
-            throw new NoRequiredData("Некорректные данные");
-        }
-        System.out.println("день:");
-        int day;
-        if (scanner.hasNextInt()) {
-            day = scanner.nextInt();
-        } else {
-            throw new NoRequiredData("Некорректные данные");
-        }
-        return LocalDate.of(year, month, day);
+        notebook.printToDoListOfDay(TaskList.createDate(scanner));
     }
 
     private static void printMenu() {

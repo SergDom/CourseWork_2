@@ -1,7 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Task implements Repeatable {
+public class Task {
 
     private static int counter = 1;
     private final Integer id = counter++;
@@ -65,47 +65,25 @@ public class Task implements Repeatable {
         return startTime;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(id, task.id) && Objects.equals(taskName, task.taskName) && Objects.equals(taskDescription, task.taskDescription);
+        return id.equals(task.id) && taskName.equals(task.taskName) && taskDescription.equals(task.taskDescription) && repeatTask == task.repeatTask && whatType == task.whatType && startTime.equals(task.startTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, taskName, taskDescription);
+        return Objects.hash(id, taskName, taskDescription, repeatTask, whatType, startTime);
     }
 
-    @Override
-    public RepeatTask nextTime() {
-        switch (repeatTask) {
-            case S:
-                System.out.println(startTime.plusDays(0) + "- дата повтора задачи");
-                break;
-            case D:
-                System.out.println(startTime.plusDays(1) + "- дата повтора задачи");
-                break;
-            case W:
-                System.out.println(startTime.plusWeeks(1) + "- дата повтора задачи");
-                break;
-            case M:
-                System.out.println(startTime.plusMonths(1) + "- дата повтора задачи");
-                break;
-            case A:
-                System.out.println(startTime.plusYears(1) + "- дата повтора задачи");
-                break;
 
-        }
-        return repeatTask;
-    }
 
     @Override
     public String toString() {
         return "Номер задачи № " + id + " Имя задачи: " + taskName + " Описание задачи: "
                 + taskDescription + " Тип задачи: " + getWhatType().name + " Дата: " + startTime + " "
-                 + repeatTask.getName() + nextTime();
+                + repeatTask.getName();
     }
 }
