@@ -49,29 +49,32 @@ public class TaskList<T extends Task & Recurring> {
         }
     }
     public static LocalDate createDate(Scanner scanner) throws NoRequiredData {
-//        System.out.println("Введите дату в формате гггг-мм-дд:");
-
-        System.out.println("год:");
-        int year;
-        if (scanner.hasNextInt()) {
-            year = scanner.nextInt();
-        } else {
-            throw new NoRequiredData("Некорректные данные");
-        }
-        System.out.println("месяц:");
-        int month;
-        if (scanner.hasNextInt()) {
-            month = scanner.nextInt();
-        } else {
-            throw new NoRequiredData("Некорректные данные");
-        }
-        System.out.println("день:");
-        int day;
-        if (scanner.hasNextInt()) {
-            day = scanner.nextInt();
-        } else {
-            throw new NoRequiredData("Некорректные данные");
-        }
-        return LocalDate.of(year, month, day);
+        System.out.println("Введите дату в формате гггг-мм-дд:");
+        LocalDate getTask = LocalDate.parse(scanner.next());
+//
+//
+//        System.out.println("год:");
+//        int year;
+//        if (scanner.hasNextInt()) {
+//            year = scanner.nextInt();
+//        } else {
+//            throw new NoRequiredData("Некорректные данные");
+//        }
+//        System.out.println("месяц:");
+//        int month;
+//        if (scanner.hasNextInt()) {
+//            month = scanner.nextInt();
+//        } else {
+//            throw new NoRequiredData("Некорректные данные");
+//        }
+//        System.out.println("день:");
+//        int day;
+//        if (scanner.hasNextInt()) {
+//            day = scanner.nextInt();
+//        } else {
+//            throw new NoRequiredData("Некорректные данные");
+//        }
+//        return LocalDate.of(year, month, day);
+        return getTask;
     }
 }
