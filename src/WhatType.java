@@ -1,8 +1,8 @@
 public enum WhatType {
-    PERSONAL ("Личная"),
-    WORK ("Рабочая");
+    PERSONAL("Личная"),
+    WORK("Рабочая");
 
-    public String name;
+    public final String name;
 
     WhatType(String name) {
         this.name = name;

@@ -1,7 +1,8 @@
-public class NoRequiredData extends Exception{
-    public NoRequiredData (){
+public class NoRequiredData extends Exception {
+    public NoRequiredData() {
     }
-    public NoRequiredData (String message){
+
+    public NoRequiredData(String message) {
         super(message);
     }
 }
