@@ -1,4 +1,6 @@
+import java.time.LocalDate;
+
 public interface Repeatable {
-    RepeatTask nextTime();
+    boolean nextTime(LocalDate localDate);
 
 }

@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws NoRequiredData {
+    public static void main(String[] args) throws Exception {
         TaskList notebook = new TaskList();
 
         try (Scanner scanner = new Scanner(System.in)) {
@@ -70,14 +70,20 @@ public class Main {
     }
 
     private static void deleteTask(Scanner scanner, TaskList notebook) {
-        System.out.println("Введине номер ID задачи: ");
-        int id = scanner.nextInt();
-        notebook.removeTask(id);
+        try {
+            System.out.println("Введите номер ID задачи: ");
+            int id = scanner.nextInt();
+            notebook.removeTask(id);
+        } catch (Exception e) {
+            System.out.println("Неправильно введен ID");
+            System.out.println(e.getMessage());
+        }
     }
 
-    private static void getListOfTask(Scanner scanner, TaskList notebook) throws NoRequiredData {
-        System.out.println("Получить задачи на день: ");
-        notebook.printToDoListOfDay(TaskList.createDate(scanner));
+    private static void getListOfTask(Scanner scanner, TaskList notebook) {
+        System.out.println("Получить задачи на день\nВведите дату в формате гггг-мм-дд: ");
+        LocalDate getTask = LocalDate.parse(scanner.next());
+        System.out.println(notebook.printToDoListOfDay(getTask));
     }
 
     private static void printMenu() {

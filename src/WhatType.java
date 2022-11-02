@@ -1,6 +1,6 @@
 public enum WhatType {
-    PERSONAL ("личная"),
-    WORK ("рабочая");
+    PERSONAL ("Личная"),
+    WORK ("Рабочая");
 
     public String name;
 
