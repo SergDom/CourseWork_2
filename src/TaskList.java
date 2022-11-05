@@ -39,14 +39,12 @@ public class TaskList {
     }
 
 
-    public List<Task> printToDoListOfDay(LocalDate date) {
-        List<Task> list = new ArrayList<>();
-        for (Integer integer : calendar.keySet()) {
-            if (calendar.get(integer).nextTime(date)) {
-                list.add(calendar.get(integer));
+    public void printToDoListOfDay(LocalDate date) {
+        for (Task value : calendar.values()) {
+            if (value.getStartTime() != null && value.getStartTime().toLocalDate().equals(date)) {
+                System.out.println(value);
             }
         }
-        return list;
     }
 }
 

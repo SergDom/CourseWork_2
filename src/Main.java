@@ -83,7 +83,7 @@ public class Main {
     private static void getListOfTask(Scanner scanner, TaskList notebook) {
         System.out.println("Получить задачи на день\nВведите дату в формате гггг-мм-дд: ");
         LocalDate getTask = LocalDate.parse(scanner.next());
-        System.out.println(notebook.printToDoListOfDay(getTask));
+        notebook.printToDoListOfDay(getTask);
     }
 
     private static void printMenu() {

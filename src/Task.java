@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Task implements Repeatable {
+public class Task {
 
     private static int counter = 1;
     private final Integer id = counter++;
@@ -10,7 +10,7 @@ public class Task implements Repeatable {
     private String taskDescription;
     private final RepeatTask repeatTask;
     private WhatType whatType;
-    private LocalDateTime startTime;
+    private final LocalDateTime startTime;
 
     public Task(String taskName, String taskDescription, RepeatTask repeatTask, LocalDateTime startTime, WhatType whatType) throws NoRequiredData {
         setTaskName(taskName);
@@ -64,34 +64,6 @@ public class Task implements Repeatable {
 
     public LocalDateTime getStartTime() {
         return startTime;
-    }
-
-    @Override
-    public boolean nextTime(LocalDate localDate) {
-        switch (repeatTask) {
-            case SINGLE:
-                return startTime.toLocalDate().isEqual(localDate);
-
-            case DAILY:
-                return startTime.toLocalDate().isBefore(localDate);
-
-            case WEEKLY:
-                while (startTime.toLocalDate().isBefore(localDate) && !startTime.toLocalDate().isEqual(localDate)) {
-                    startTime = startTime.plusWeeks(1);
-                }
-                return startTime.toLocalDate().isEqual(localDate);
-            case MONTHLY:
-                while (startTime.toLocalDate().isBefore(localDate) && !startTime.toLocalDate().isEqual(localDate)) {
-                    startTime = startTime.plusMonths(1);
-                }
-                return startTime.toLocalDate().isEqual(localDate);
-            case ANNUAL:
-                while (startTime.toLocalDate().isBefore(localDate) && !startTime.toLocalDate().isEqual(localDate)) {
-                    startTime = startTime.plusYears(1);
-                }
-                return startTime.toLocalDate().isEqual(localDate);
-        }
-        return false;
     }
 
     @Override
