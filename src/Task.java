@@ -2,20 +2,19 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Task {
+public class Task implements Repeatable{
 
     private static int counter = 1;
     private final Integer id = counter++;
     private String taskName;
     private String taskDescription;
-    private final RepeatTask repeatTask;
-    private WhatType whatType;
     private final LocalDateTime startTime;
+    private WhatType whatType;
 
-    public Task(String taskName, String taskDescription, RepeatTask repeatTask, LocalDateTime startTime, WhatType whatType) throws NoRequiredData {
+
+    public Task(String taskName, String taskDescription, LocalDateTime startTime, WhatType whatType) throws NoRequiredData {
         setTaskName(taskName);
         setTaskDescription(taskDescription);
-        this.repeatTask = repeatTask;
         this.startTime = startTime;
         this.whatType = whatType;
     }
@@ -71,19 +70,22 @@ public class Task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(id, task.id) && Objects.equals(taskName, task.taskName) && Objects.equals(taskDescription, task.taskDescription) && repeatTask == task.repeatTask && whatType == task.whatType && Objects.equals(startTime, task.startTime);
+        return Objects.equals(id, task.id) && Objects.equals(taskName, task.taskName) && Objects.equals(taskDescription, task.taskDescription) && whatType == task.whatType && Objects.equals(startTime, task.startTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, taskName, taskDescription, repeatTask, whatType, startTime);
+        return Objects.hash(id, taskName, taskDescription, whatType, startTime);
     }
 
     @Override
     public String toString() {
         return "Номер задачи № " + id + " Имя задачи: " + taskName + " Описание задачи: "
-                + taskDescription + " Тип задачи: " + getWhatType().name + " Дата: " + startTime + " "
-                + repeatTask.getName();
+                + taskDescription + " Тип задачи: " + getWhatType().name + " Дата: " + startTime;
     }
 
+    @Override
+    public boolean nextTime(LocalDate localDate) {
+        return false;
+    }
 }

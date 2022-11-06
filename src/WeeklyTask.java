@@ -2,8 +2,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class WeeklyTask extends Task implements Repeatable{
-    public WeeklyTask(String taskName, String taskDescription, RepeatTask repeatTask, LocalDateTime startTime, WhatType whatType) throws NoRequiredData {
-        super(taskName, taskDescription, repeatTask, startTime, whatType);
+    public WeeklyTask(String taskName, String taskDescription, LocalDateTime startTime, WhatType whatType) throws NoRequiredData {
+        super(taskName, taskDescription, startTime, whatType);
     }
 
     @Override
@@ -13,5 +13,10 @@ public class WeeklyTask extends Task implements Repeatable{
             variable = getStartTime().plusWeeks(1);
         }
         return getStartTime().toLocalDate().isEqual(localDate);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " Еженедельная";
     }
 }

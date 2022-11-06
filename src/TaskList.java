@@ -16,35 +16,16 @@ public class TaskList {
         calendar.remove(id);
     }
 
-    public RepeatTask repeatTask(int repeatTask) {
-        RepeatTask a = null;
-        switch (repeatTask) {
-            case 1:
-                a = RepeatTask.SINGLE;
-                break;
-            case 2:
-                a = RepeatTask.DAILY;
-                break;
-            case 3:
-                a = RepeatTask.WEEKLY;
-                break;
-            case 4:
-                a = RepeatTask.MONTHLY;
-                break;
-            case 5:
-                a = RepeatTask.ANNUAL;
-                break;
-        }
-        return a;
-    }
 
-
-    public void printToDoListOfDay(LocalDate date) {
-        for (Task value : calendar.values()) {
-            if (value.getStartTime() != null && value.getStartTime().toLocalDate().equals(date)) {
-                System.out.println(value);
+    public List <Task> printToDoListOfDay(LocalDate date) {
+        List <Task> allTaskList = new ArrayList<>();
+        for (Map.Entry<Integer, Task> value : calendar.entrySet()) {
+            Task task = value.getValue();
+            if (task.nextTime(date)) {
+               allTaskList.add(task);
             }
         }
+        return allTaskList;
     }
 }
 

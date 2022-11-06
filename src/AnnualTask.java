@@ -1,9 +1,9 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class AnnualTask extends Task implements Repeatable{
-    public AnnualTask(String taskName, String taskDescription, RepeatTask repeatTask, LocalDateTime startTime, WhatType whatType) throws NoRequiredData {
-        super(taskName, taskDescription, repeatTask, startTime, whatType);
+public class AnnualTask extends Task implements Repeatable {
+    public AnnualTask(String taskName, String taskDescription, LocalDateTime startTime, WhatType whatType) throws NoRequiredData {
+        super(taskName, taskDescription, startTime, whatType);
     }
 
     @Override
@@ -13,5 +13,11 @@ public class AnnualTask extends Task implements Repeatable{
             variable = getStartTime().plusYears(1);
         }
         return getStartTime().toLocalDate().isEqual(localDate);
+    }
+
+
+    @Override
+    public String toString() {
+        return super.toString() + " Ежегодная";
     }
 }

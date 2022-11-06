@@ -64,9 +64,25 @@ public class Main {
                         5 - через год.
                         """);
         System.out.print("Повторяемость задачи: ");
-        int repeatTask = scanner.nextInt();
         LocalDateTime startTime = LocalDateTime.of(dateTask, timeTask);
-        notebook.addTask(new Task(taskName, taskDescription, notebook.repeatTask(repeatTask), startTime, typeOfTask));
+        int repeatTask = scanner.nextInt();
+        switch (repeatTask) {
+            case 1:
+                notebook.addTask(new SingleTask(taskName, taskDescription, startTime, typeOfTask));
+                break;
+            case 2:
+                notebook.addTask(new DailyTask(taskName, taskDescription, startTime, typeOfTask));
+                break;
+            case 3:
+                notebook.addTask(new WeeklyTask(taskName, taskDescription, startTime, typeOfTask));
+                break;
+            case 4:
+                notebook.addTask(new MonthlyTask(taskName, taskDescription, startTime, typeOfTask));
+                break;
+            case 5:
+                notebook.addTask(new AnnualTask(taskName, taskDescription, startTime, typeOfTask));
+                break;
+        }
     }
 
     private static void deleteTask(Scanner scanner, TaskList notebook) {
@@ -84,6 +100,7 @@ public class Main {
         System.out.println("Получить задачи на день\nВведите дату в формате гггг-мм-дд: ");
         LocalDate getTask = LocalDate.parse(scanner.next());
         notebook.printToDoListOfDay(getTask);
+        System.out.println(notebook.printToDoListOfDay(getTask));
     }
 
     private static void printMenu() {
