@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class TaskList {
@@ -17,7 +18,7 @@ public class TaskList {
     }
 
 
-    public List <Task> printToDoListOfDay(LocalDate date) {
+    public List <Task> printToDoListOfDay(LocalDateTime date) {
         List <Task> allTaskList = new ArrayList<>();
         for (Map.Entry<Integer, Task> value : calendar.entrySet()) {
             Task task = value.getValue();

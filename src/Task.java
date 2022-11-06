@@ -85,7 +85,7 @@ public class Task implements Repeatable{
     }
 
     @Override
-    public boolean nextTime(LocalDate localDate) {
+    public boolean nextTime(LocalDateTime localDate) {
         return false;
     }
 }

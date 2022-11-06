@@ -7,12 +7,15 @@ public class MonthlyTask extends Task implements Repeatable {
     }
 
     @Override
-    public boolean nextTime(LocalDate localDate) {
+    public boolean nextTime(LocalDateTime localDate) {
         LocalDateTime variable = getStartTime();
-        if (getStartTime().toLocalDate().isBefore(localDate) && !getStartTime().toLocalDate().isEqual(localDate)) {
-            variable = getStartTime().plusMonths(1);
+        while (variable.isBefore(localDate)) {
+            if (variable.isEqual(localDate)) {
+                return true;
+            }
+            variable = variable.plusMonths(1);
         }
-        return getStartTime().toLocalDate().isEqual(localDate);
+        return false;
     }
     @Override
     public String toString() {

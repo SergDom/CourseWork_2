@@ -7,12 +7,15 @@ public class WeeklyTask extends Task implements Repeatable{
     }
 
     @Override
-    public boolean nextTime(LocalDate localDate) {
+    public boolean nextTime(LocalDateTime localDate) {
         LocalDateTime variable = getStartTime();
-        if (getStartTime().toLocalDate().isBefore(localDate) && !getStartTime().toLocalDate().isEqual(localDate)) {
-            variable = getStartTime().plusWeeks(1);
+        while (variable.isBefore(localDate)) {
+            if (variable.isEqual(localDate)) {
+                return true;
+            }
+            variable = variable.plusWeeks(1);
         }
-        return getStartTime().toLocalDate().isEqual(localDate);
+        return false;
     }
 
     @Override

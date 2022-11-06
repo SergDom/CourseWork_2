@@ -9,8 +9,12 @@ public class SingleTask extends Task implements Repeatable{
     }
 
     @Override
-    public boolean nextTime(LocalDate localDate) {
-        return getStartTime().toLocalDate().isEqual(localDate);
+    public boolean nextTime(LocalDateTime localDate) {
+        LocalDateTime variable = getStartTime();
+            if (localDate.equals(variable)) {
+            variable = localDate;
+            }
+            return false;
     }
 
     @Override
