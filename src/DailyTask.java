@@ -7,10 +7,10 @@ public class DailyTask extends Task implements Repeatable {
     }
 
     @Override
-    public boolean nextTime(LocalDateTime localDate) {
-        LocalDateTime variable = getStartTime();
-        while (variable.isBefore(localDate)) {
-            if (variable.isEqual(localDate)) {
+    public boolean nextTime(LocalDate localDate) {
+        LocalDate variable = getStartTime().toLocalDate();
+        while (!variable.isAfter(localDate)) {
+            if (variable.equals(localDate)) {
                 return true;
             }
             variable = variable.plusDays(1);

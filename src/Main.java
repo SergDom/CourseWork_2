@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -98,9 +99,13 @@ public class Main {
 
     private static void getListOfTask(Scanner scanner, TaskList notebook) {
         System.out.println("Получить задачи на день\nВведите дату в формате гггг-мм-дд: ");
+        scanner.nextLine();
         LocalDate getTask = LocalDate.parse(scanner.next());
-        notebook.printToDoListOfDay(getTask);
-        System.out.println(notebook.printToDoListOfDay(getTask));
+        List <Task> printTask = notebook.printToDoListOfDay(getTask);
+        for (Task task: printTask) {
+            System.out.println(task);
+        }
+
     }
 
     private static void printMenu() {

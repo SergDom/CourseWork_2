@@ -18,7 +18,7 @@ public class TaskList {
     }
 
 
-    public List <Task> printToDoListOfDay(LocalDateTime date) {
+    public List <Task> printToDoListOfDay(LocalDate date) {
         List <Task> allTaskList = new ArrayList<>();
         for (Map.Entry<Integer, Task> value : calendar.entrySet()) {
             Task task = value.getValue();

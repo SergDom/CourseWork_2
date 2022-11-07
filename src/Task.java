@@ -85,7 +85,8 @@ public class Task implements Repeatable{
     }
 
     @Override
-    public boolean nextTime(LocalDateTime localDate) {
-        return false;
+    public boolean nextTime(LocalDate localDate) {
+
+        return localDate.isEqual(getStartTime().toLocalDate());
     }
 }
