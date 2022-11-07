@@ -105,7 +105,6 @@ public class Main {
         for (Task task: printTask) {
             System.out.println(task);
         }
-
     }
 
     private static void printMenu() {
